@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mess Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img class="logo" src="logo.png" alt="Logo">
+      <div>
+        <h1>Mess Management</h1>
+        <div id="datetime"></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="login-selection" class="card">
+    <h2>Select Login</h2>
+    <div class="login-options">
+      <div class="login-box" onclick="showLogin('student')">Student</div>
+      <div class="login-box" onclick="showLogin('admin')">Admin</div>
+    </div>
+  </main>
+
+  <section id="login-section" class="card hidden">
+    <h2 id="login-title">Login</h2>
+    <input type="text" id="student-name" placeholder="Name (Student)" />
+    <input type="password" id="password" placeholder="Password" />
+    <div class="btn-group">
+      <button onclick="login()">Login</button>
+      <button class="secondary" onclick="goBack()">Exit</button>
+    </div>
+  </section>
+
+  <section id="student-panel" class="card hidden">
+    <h2>Welcome, <span id="student-greet-name"></span></h2>
+    <div class="box green">
+      <h3>Mark Attendance</h3>
+      <div class="btn-group">
+        <button id="btn-breakfast" onclick="markAttendance('breakfast')">Breakfast</button>
+        <button id="btn-lunch" onclick="markAttendance('lunch')">Lunch</button>
+        <button id="btn-dinner" onclick="markAttendance('dinner')">Dinner</button>
+      </div>
+    </div>
+    <div class="box blue">
+      <h3>Today's Menu</h3>
+      <p><b>Breakfast:</b> <span id="menu-breakfast"></span></p>
+      <p><b>Lunch:</b> <span id="menu-lunch"></span></p>
+      <p><b>Dinner:</b> <span id="menu-dinner"></span></p>
+    </div>
+    <button onclick="goBack()">Exit</button>
+  </section>
+
+  <section id="admin-panel" class="card hidden">
+    <h2>Admin Dashboard</h2>
+    <div class="grid">
+      <button class="admin-btn" onclick="showAdminSection('attendance')">Attendance</button>
+      <button class="admin-btn" onclick="showAdminSection('menu')">Menu</button>
+      <button class="admin-btn" onclick="showAdminSection('taker')">Alert</button>
+      <button class="admin-btn" onclick="showAdminSection('waste')">Waste</button>
+    </div>
+
+    <div id="admin-attendance" class="admin-box red">
+      <h3>Attendance</h3>
+      <p>Breakfast (<span id="count-breakfast">0</span>): <span id="list-breakfast"></span></p>
+      <p>Lunch (<span id="count-lunch">0</span>): <span id="list-lunch"></span></p>
+      <p>Dinner (<span id="count-dinner">0</span>): <span id="list-dinner"></span></p>
+      <button onclick="resetAttendance()">Reset Attendance</button>
+    </div>
+
+    <div id="admin-menu" class="admin-box hidden blue">
+      <h3>Upload Menu</h3>
+      <input id="input-breakfast" placeholder="Breakfast menu" />
+      <input id="input-lunch" placeholder="Lunch menu" />
+      <input id="input-dinner" placeholder="Dinner menu" />
+      <button onclick="updateMenu()">Upload</button>
+      <button class="secondary" onclick="resetMenu()">Reset Menu</button>
+    </div>
+
+    <div id="admin-taker" class="admin-box hidden yellow">
+      <h3>Food Taker Alert</h3>
+      <input id="contact-number" placeholder="Contact number" />
+      <button onclick="sendFoodMessage()">Send</button>
+    </div>
+
+    <div id="admin-waste" class="admin-box hidden purple">
+      <h3>Food Waste</h3>
+      <input id="waste-breakfast" type="number" placeholder="Breakfast (kg)" />
+      <input id="waste-lunch" type="number" placeholder="Lunch (kg)" />
+      <input id="waste-dinner" type="number" placeholder="Dinner (kg)" />
+      <button onclick="updateWaste()">Submit</button>
+      <p><b>Today:</b> <span id="total-waste-today">0</span> kg • <b>Week:</b> <span id="weekly-waste">0</span> kg</p>
+    </div>
+
+    <button class="secondary" onclick="goBack()">Exit</button>
+  </section>
+
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCQU-G7gCBdD5_jrWBitn_pIBIXS_USRq8",
+    authDomain: "mess-management-92ffd.firebaseapp.com",
+    databaseURL: "https://mess-management-92ffd-default-rtdb.firebaseio.com",
+    projectId: "mess-management-92ffd",
+    storageBucket: "mess-management-92ffd.firebasestorage.app",
+    messagingSenderId: "1061949284665",
+    appId: "1:1061949284665:web:cfa73451ce95d737c308e8",
+    measurementId: "G-5WHZ0MPNF4"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+  <script src="script.js"></script>
+</body>
+</html>
