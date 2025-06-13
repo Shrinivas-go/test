@@ -1,0 +1,113 @@
+/* Reset & global */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  color: #333;
+}
+.card {
+  background: white;
+  max-width: 480px;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+.hidden { display: none; }
+
+/* Header */
+header {
+  background: #00695c;
+  color: white;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+}
+.logo { width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; }
+#datetime { font-size: .9rem; opacity: .8; }
+
+/* Layout & buttons */
+.login-options, .btn-group, .grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+button {
+  padding: .6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+button:hover { transform: scale(1.02); }
+button.secondary {
+  background: #eee;
+  color: #333;
+}
+button:not(.secondary) {
+  background: #00bfa5;
+  color: white;
+}
+.admin-btn {
+  background: #0288d1;
+  color: white;
+  padding: .8rem 1.6rem;
+  border-radius: 8px;
+}
+
+/* Boxes */
+.box, .admin-box {
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+.red { background: #e53935; }
+.green { background: #43a047; }
+.blue { background: #1e88e5; }
+.yellow { background: #fdd835; color: #333; }
+.purple { background: #8e24aa; }
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: .7rem;
+  margin: .5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+input:focus {
+  border-color: #0288d1;
+  box-shadow: 0 0 5px rgba(2,136,209,0.3);
+  outline: none;
+}
+
+/* Responsive */
+@media (min-width: 600px) {
+  .grid .admin-btn { flex: 1 1 45%; }
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #00695c;
+  color: white;
+  padding:8px;
+  margin-top:20px;
+  border-radius:6px;
+  cursor:pointer;
+}
